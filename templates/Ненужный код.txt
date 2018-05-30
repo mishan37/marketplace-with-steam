@@ -1,0 +1,120 @@
+{% if request.user.is_authenticated %}
+     <div class="row">
+       <div class="col-lg-12 col-md-12">
+         <h3 style="color: white">��� ���� �� �������</h3>
+       </div>
+       {% if User_Lots%}
+           {% for user_lot in User_Lots %}
+               <div class="col-lg-12 col-md-12" style="background-color: lightskyblue; margin-top: 10px">���: {{ user_lot.lot_name }}, ���������� ��������� � ����: {{ user_lot.item_count }}, ��������� �������� � ���� {{ user_lot.cost }}</div>
+           {% endfor %}
+        {% else %}
+         <div class="col-lg-12 col-md-12" style="background-color: lightskyblue; ">� ��� ��� ���������, ������������ �� ������� ����� �������� ��������. �� ������ ������� �������� �� ���������.</div>
+       {% endif %}
+      </div>
+
+     {% endif %}
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}" >
+</head>
+<body>
+<div class="center-reg-form">
+ <div class="container" >
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+          <h3 align="center">Авторизация</h3>
+       <form id="register-form" action="login" method="post">{% csrf_token %}
+         <div class="form-group">
+             <input type="text" name="username" id="username"  class="form-control" placeholder="Login" value="">
+         </div>
+        <div class="form-group">
+            <input type="password" name="password" id="password"  class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" name="autoriz-submit" id="autoriz-submit"  class="form-control btn btn-register" value="Log in">
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+ </div>
+ </div>
+ </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+</head>
+<body>
+<div class="center-reg-form">
+ <div class="container" >
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+          <h3 align="center">Регистрация</h3>
+       <form id="register-form" action="reguser" method="post">{% csrf_token %}
+         <div class="form-group">
+             <input type="text" name="username" id="username"  class="form-control" placeholder="Login" value="">
+         </div>
+        <div class="form-group">
+            <input type="email" name="email" id="email"  class="form-control" placeholder="Email Address" value="">
+        </div>
+        <div class="form-group">
+            <input type="text" name="country" id="country" class="form-control" placeholder="Country">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" id="password"  class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <input type="password" name="confirm-password" id="confirm-password"  class="form-control" placeholder="Confirm Password">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" name="register-submit" id="register-submit"  class="form-control btn btn-register" value="Register Now">
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+ </div>
+ </div>
+ </div>
+</body>
+</html>
+
+def validate_authorization(request):
+    username = request.GET['username']
+    password = request.GET['password']
+    data = None
+    user = authenticate(username=username, password=password)
+    if user is not None:
+       if user.is_active:
+           login(request, user)
+                # Redirect to a success page
+           data = {
+                    'is_user': True,
+                }
+       else:
+                # Return a 'disabled account' error message
+           data = {'is_user': False, }
+    else:
+           data = {'is_user': False, }
+
+    return JsonResponse(data)

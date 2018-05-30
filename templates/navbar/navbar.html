@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">MarketPlace</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Главная</a></li>
+      <li><a href="http://127.0.0.1:8000/profile/{{ request.user.id }}">Профиль</a></li>
+      <li><a href="http://127.0.0.1:8000/inventory/{{ Auth_User.id }}">Инвентарь</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if request.user.is_authenticated %}
+       <li style="color: white"><a><span class="glyphicon glyphicon-user" style="color: white"></span>{{ Auth_User.username }}</a></li>
+       <li><a href="http://127.0.0.1:8000/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a> </li>
+      {% else %}
+       <li><a href="" data-toggle="modal" data-target="#regModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+       <li><a href="" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+</html>

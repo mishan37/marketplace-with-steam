@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div class = "row">
+             {% for Lot in All_Lots %}
+               {% for Item in Items %}
+                  {% if Lot.item_code_id == Item.id %}
+                   {% if Lot.item_count != 0 %}
+
+                    <div class="col-lg-8 col-md-4" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+                      <h5><a href="lot/{{ Lot.id }}">{{ Lot.lot_name }}</a></h5>
+                    </div>
+                   <div class="col-lg-2 col-md-1" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+                    <h5>{{ Lot.item_count }}</h5>
+                   </div>
+                   <div class="col-lg-2 col-md-1" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+                    <h5>{{ Lot.cost }} у.е.</h5>
+                   </div>
+                {% endif %}
+              {% endif %}
+              {% endfor %}
+            {% endfor %}
+    </div>
+</body>
+</html>

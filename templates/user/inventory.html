@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'js/inventory_script.js' %}"></script>
+</head>
+<body style="height: 100%; background-color:steelblue;">
+ {% include 'navbar/navbar.html' %}
+ <div class="container-fluid"  style="margin-top: -20px; ">
+  <div class="row" style="background: forestgreen; height: 80px">
+   <div class="container">
+       <div class="row">
+         <div class="col-xs-12 col-md-8 col-lg-8">
+          {% if Auth_User.id == Owner_User.id %}
+           <h1 style="color: white;">Инвентарь пользователя</h1>
+          {% else %}
+           <h1 style="color: white;">Инвентарь пользователя {{ Owner_User.username }}</h1>
+          {% endif %}
+         </div>
+
+       <div class="row" style="background: forestgreen; margin-top: 10px;">
+       {% if request.user.is_authenticated %}
+       <div class="col-lg-2 col-md-4" style="background-color: grey; color: white; ">
+        {% if Auth_User.id == Owner_User.id %}
+         <h4>Баланс кошелька: {{ Auth_User.profile.money }} у.е.</h4>
+        {% endif %}
+       </div>
+       {% endif %}
+       </div>
+    </div>
+   </div>
+
+  </div>
+</div>
+
+  <div class="container">
+   <div class="row" style="margin-top: 20px;">
+    <div class="view_inventory_page">
+     <div class="row">
+       <div class="col-lg-7 col-md-7">
+       <div class="inventory_page_left">
+        <div class="trade_item_box">
+         <div class="row">
+          <div class="inventory_ctn">
+            <div class="inventory_page">
+            {% for user_item in User_Items %}
+              {% for item in Items %}
+                 {% if user_item.item_code_id == item.id  %}
+                   {% if user_item.quantity != 0 %}
+                     <a class="inventory_item_link" href="http://127.0.0.1:8000/inventory/{{ Owner_User.id }}/item/{{ user_item.id }}" name="show_item" id="show_item">
+                      <div class="itemHolder">
+                       <div class="item">
+                           <img src="{{ item.image_link }}" style="margin: 2px;" width="90" height="90">
+                       </div>
+                      </div>
+                      </a>
+                    {% endif %}
+                 {% endif %}
+              {% endfor %}
+            {% endfor %}
+            </div>
+          </div>
+           </div>
+         </div>
+         </div>
+        </div>
+
+
+     <div class="col-lg-5 col-md-5">
+      <div class="inventory_page_right">
+       <div class="inventory_iteminfo" id="iteminfo1" style="opacity: 1; border-color: rgb(210,210,210); z-index: 1;">
+        <div class="item_desc_content">
+        <div class="row" style="color: white;">
+        <div class="item_desc_icon">
+         <img src="{{ Item.image_link }}" width="192" height="192" style="margin-left: 5px; margin-top: 5px;">
+        </div>
+        <h4 name="item_name" id="item_name" data-h="НАЗВАНИЕ: " style="margin-left: 10px">НАЗВАНИЕ: {{Item.item_name}}</h4>
+        <h4 name="item_type" id="item_type" data-h="ТИП ПРЕДМЕТА: " style="margin-left: 10px">ТИП ПРЕДМЕТА: {{Item.type_item}}</h4>
+        <h4 name="item_description"  id="item_description" data-h="ОПИСАНИЕ: " style="margin-left: 10px">ОПИСАНИЕ: {{Item.description}}</h4>
+        <h4 name="item_quantity"  id="item_quantity" data-h="{{ User_Item.quantity }}" style="margin-left: 10px">КОЛ-ВО В ИНВЕНТАРЕ: {{User_Item.quantity}}</h4>
+        <h4 name="item_price" id="item_price" data-h="МИНИМАЛЬНАЯ ЦЕНА ТОВАРА: " style="margin-left: 10px">МИНИМАЛЬНАЯ ЦЕНА ТОВАРА: {{ Item.starting_price }}</h4>
+        {% if Owner_User.id == Auth_User.id %}
+         <form id="new_lot" action="http://127.0.0.1:8000/inventory/createnewlot" method="post">{% csrf_token %}
+          <h4 style="margin-left: 10px" >НАЗВАНИЕ ЛОТА: </h4>
+          <input style="margin-left: 10px; color: black;" type="text" id="lot_name_input" name="lot_name_input">
+          <div class="form-inline">
+           <h4 style="margin-left: 10px">ВЫСТАВИТЬ ЗА: </h4>
+           <input type="number" id="price_input" name="price_input" class="vIntegerField" min="{{ Item.starting_price }}" value="{{ Item.starting_price }}" style="color: black; margin-left: 10px">
+          </div>
+          <div class="form-inline">
+           <h4 style="margin-left: 10px">КОЛИЧЕСТВО: </h4>
+           <input type="number" id="quantity_input" name="quantity_input" class="vIntegerField" max="{{ User_Item.quantity }}" min="1" value="1" style="color: black; margin-left: 10px;">
+          </div>
+          <input type="hidden" id="seller_id_input" name="seller_id_input" value="{{ User_Item.user_id_id}}">
+          <input type="hidden" id="item_code_input" name="item_code_input" value="{{ Item.id }}">
+          <button type="submit" id="create_lot_button" name="create_lot_button" class="btn btn-success btn-lg" style="margin: 10px; ">ВЫСТАВИТЬ</button>
+         </form>
+         {% endif %}
+        </div>
+        </div>
+       </div>
+      </div>
+     </div>
+   </div>
+  </div>
+  </div>
+  </div>
+{% include 'footer/footer.html' %}
+</body>
+</html>

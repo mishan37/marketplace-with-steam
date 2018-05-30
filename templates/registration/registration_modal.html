@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<form id="register-form" action="reguser" method="post">{% csrf_token %}
+<div class="modal fade" tabindex="-1" id="regModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Регистрация</h4>
+      </div>
+      <div class="modal-body" style="background-color: steelblue">
+       <form>
+
+          <div id="LoginForm" name="LoginForm" class="form-group">
+           <label class="control-label" for="inputUserName" style="color: white">Введите желаемое имя пользователя</label>
+           <input type="text" name="RegUserName" id="RegUserName" class="form-control" placeholder="Логин пользователя">
+           <span id="LoginSpan" aria-hidden="true"></span>
+           <p></p>
+           <div id="ErrorLoginAlert" class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" id="CloseLoginAlert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            A user with this username already exists.
+           </div>
+
+          </div>
+          <hr>
+          <div id="PasswordForm" class="form-group">
+            <label for="inputPassword" style="color: white">Введите пароль</label>
+            <input type="password" name="RegPassword" id="RegPassword" class="form-control" placeholder="Пароль" type="text" >
+            <span id="PasswordSpan" aria-hidden="true"></span>
+          </div>
+
+          <div id = "ConfirmPasswordForm" class="form-group">
+            <label for="inputRepeatPassword" style="color: white">Подтвердите пароль</label>
+            <input type="password" name="Confirm-Password" id="Confirm-Password"  class="form-control" placeholder="Подтвердите пароль">
+            <span id="PasswordConfirmSpan" aria-hidden="true"></span>
+            <p></p>
+            <div id="ErrorConfirmPasswordAlert" class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" id="CloseConfirmPasswordAlert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            Passwords aren't equal.
+           </div>
+          </div>
+
+          <hr>
+          <div id="EmailForm" name="EmailForm" class="form-group">
+            <label for="inputEmail" style="color: white">Введите ваш адрес эл. почты</label>
+            <input type="email" name="Email" id="Email"  class="form-control" placeholder="Email адрес" >
+            <span id="EmailSpan" aria-hidden="true"></span>
+            <p></p>
+            <div id="ErrorEmailAlert" class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" id="CloseEmailAlert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            A user with this email already exist.
+           </div>
+          </div>
+          <hr>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="submit" name="register-submit" id="register-submit"  class="btn btn-success">Зарегистрироваться</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</form>
+</html>

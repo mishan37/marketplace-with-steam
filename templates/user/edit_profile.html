@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Marketplace::edit profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <script src="{% static 'js/edit_profile_script.js' %}"></script>
+</head>
+<body>
+ {% include 'navbar/navbar.html' %}
+ <form id="edit-form" action="change_user" method="post">{% csrf_token %}
+ <div class="row">
+     <div class="container">
+       <div class="profile_small_header_texture">
+          <div class="profile_small_header_text">
+              <h3>{{ Auth_User.username }} >> Редактирование профиля</h3>
+          </div>
+       </div>
+
+       <div class="group_content">
+        <div class="row">
+        <p></p>
+         <h3 style="text-align: center;">Мой профиль</h3>
+          <div class="col-lg-3 col-md-3">
+             <div class="formRowTitle">
+               <h4>Имя профиля</h4>
+             </div>
+             <div class="formRowTitle">
+               <h4>Имя</h4>
+             </div>
+             <div class="formRowTitle">
+               <h4>Фамилия</h4>
+             </div>
+             <div class="formRowTitle">
+               <h4>Страна</h4>
+             </div>
+           </div>
+           <div class="col-lg-5 col-md-5">
+            <div id="EditLoginForm" name="EditLoginForm" class="form-group">
+             <div class="formRowInput">
+              <input id="inputEditUserName" name="inputEditUserName" type="text" class="form-control" style="background-color: lightsteelblue; color: black;" value="{{ Auth_User.username }}">
+              <span id="EditLoginSpan" aria-hidden="true"></span>
+             </div>
+           </div>
+           <div class="formRowInput">
+             <input type="text" id="EditFirstName" name="EditFirstName" class="form-control" style="background-color: lightsteelblue; color: black;" value="{{ Auth_User.first_name}}">
+           </div>
+           <div class="formRowInput">
+             <input type="text" id="EditLastName" name="EditLastName" class="form-control" style="background-color: lightsteelblue; color: black;" value=" {{ Auth_User.last_name }}">
+           </div>
+           <div class="formRowInput">
+             <input name="EditCountry" id="EditCountry" type="text" class="form-control" style="background-color: lightsteelblue; color: black;" value="{{ Auth_User.profile.country }}">
+           </div>
+              <p></p>
+            <div id="EditAlertLoginForm" name="EditAlertLoginForm" class="form-group">
+              <div id="EditErrorLoginAlert" class="alert alert-danger alert-dismissible fade in" role="alert">
+              <button type="button" class="close" id="EditCloseLoginAlert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              A user with this username already exists.
+             </div>
+            </div>
+          </div>
+         </div>
+        </div>
+        <p></p>
+
+         <div class="group_content">
+             <div class="row">
+               <div class="col-lg-3 col-md-3">
+                <div class="formRowTitle">
+                 <h4>Пароль</h4>
+                </div>
+                <div class="formRowTitle">
+                 <h4>Повторите пароль</h4>
+                </div>
+               </div>
+               <div class="col-lg-5 col-md-5">
+                  <div id = "EditPasswordForm" class="form-group">
+                   <div class="formRowInput">
+                    <input name="EditPassword" id="EditPassword" type="password" class="form-control" style="background-color: lightsteelblue; color: black;" placeholder="Пароль" >
+                    <span id="EditPasswordSpan" aria-hidden="true"></span>
+                   </div>
+                  </div>
+
+                  <div id = "EditConfirmPasswordForm" class="form-group">
+                   <div class="formRowInput">
+                    <input id="EditConfirm-Password" type="password" class="form-control" style="background-color: lightsteelblue; color: black;" placeholder="Повторите пароль" >
+                    <span id="EditPasswordConfirmSpan" aria-hidden="true"></span>
+                   </div>
+                  </div>
+                  <p></p>
+                  <div id="EditErrorConfirmPasswordAlert" class="alert alert-danger alert-dismissible fade in" role="alert">
+                  <button type="button" class="close" id="EditCloseConfirmPasswordAlert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                  Passwords aren't equal.
+                  </div>
+               </div>
+             </div>
+         </div>
+         <p></p>
+         <div class="group_content">
+             <div class="row">
+               <div class="col-lg-3 col-md-3">
+                <div class="formRowTitle">
+                 <h4>Аватар</h4>
+                </div>
+               </div>
+               <div class="col-lg-5 col-md-5">
+                <img id="EditAvatar" src="{{ Auth_User.profile.image_link }}" width="184" height="184" style="margin-top: 15px;">
+                <p>Загрузите свое изображение</p>
+                <input name="EditImageLink" id="EditImageLink" type="text" class="form-control" style="background-color: lightsteelblue; color: black;" placeholder="Ссылка на аватар" >
+               </div>
+             </div>
+         </div>
+         <p></p>
+         <div class="group_content">
+             <div class="row">
+               <div class="col-lg-3 col-md-3">
+                <div class="formRowTitle">
+                 <h4>О себе</h4>
+                </div>
+               </div>
+               <div class="col-lg-5 col-md-5">
+                <div class="formRowInput">
+                   <textarea name="EditInformation" id="EditInformation" class="form-control"  rows="3" style="background-color: lightsteelblue; color: black;">{{ Auth_User.profile.information }}</textarea>
+                </div>
+               </div>
+             </div>
+          </div>
+
+         <p></p>
+         <div class="row" style="margin-left: 60px;">
+           <div class="col-lg-1 col-md-1">
+             <a href="http://127.0.0.1:8000/profile/{{ Auth_User.id }}/" type="button" class="btn btn-default">Отмена</a>
+           </div>
+          <div class="col-lg-1 col-md-1">
+             <button id="edit-submit" type="submit"  class="btn btn-success">Сохранить изменения</button>
+          </div>
+         </div>
+     </div>
+ </div>
+</form>
+</body>
+</html>

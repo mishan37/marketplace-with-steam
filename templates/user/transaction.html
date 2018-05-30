@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
+</head>
+<body>
+ {% include 'navbar/navbar.html' %}
+ {% include 'menu/menu.html' %}
+
+  <div class="row">
+     <div class="container">
+      <nav class="navbar navbar-inverse" style="margin-top: 20px">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+         <li><a href="/">Активные лоты</a></li>
+         {% if request.user.is_authenticated %}
+         <li><a href="../transaction">История сделок</a></li>
+         {% endif %}
+        </ul>
+      </div>
+     </nav>
+     <div class="row" style="margin-top: 15px; color: white">
+        <div class="col-lg-2 col-md-2" style="background-color: #696969; outline: 1px solid #000;">
+           <h5>НАЗВАНИЕ ПРЕДМЕТА</h5>
+        </div>
+        <div class="col-lg-2 col-md-2" style="background-color: #696969; outline: 1px solid #000;">
+           <h5>ДАТА СДЕЛКИ</h5>
+        </div>
+        <div class="col-lg-2 col-md-2" style="background-color: #696969; outline: 1px solid #000;">
+            <h5>НИК ПРОДАВЦА</h5>
+        </div>
+        <div class="col-lg-2 col-md-2" style="background-color: #696969; outline: 1px solid #000;">
+            <h5>НИК ПОКУПАТЕЛЯ</h5>
+        </div>
+        <div class="col-lg-2 col-md-2" style="background-color: #696969; outline: 1px solid #000;">
+           <h5>КОЛ-ВО ПРЕДМЕТОВ</h5>
+        </div>
+        <div class="col-lg-2 col-md-2" style="background-color: #696969; outline: 1px solid #000;">
+           <h5>ЦЕНА СДЕЛКИ</h5>
+        </div>
+     </div>
+     <div class = "row">
+         {% for Transaction in User_Transactions %}
+           <div class="col-lg-2 col-md-2" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+               <h5>{{ Transaction.item_name}}</h5>
+           </div>
+           <div class="col-lg-2 col-md-2" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+            <h5>{{ Transaction.transaction_date }}</h5>
+           </div>
+           <div class="col-lg-2 col-md-2    " style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+            <h5>{{ Transaction.username_seller }}</h5>
+           </div>
+           <div class="col-lg-2 col-md-2" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+             <h5>{{ Transaction.username_buyer }}</h5>
+           </div>
+            <div class="col-lg-2 col-md-2" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+             <h5>{{ Transaction.item_count }}</h5>
+           </div>
+            <div class="col-lg-2 col-md-2" style="background-color: lightskyblue; outline: 1px solid #000; margin-top: 10px; color: black">
+            {% if Transaction.user_seller_id == Auth_User.id %}
+             <h5>+{{ Transaction.cost }}</h5>
+            {% else %}
+             <h5>-{{ Transaction.cost }}</h5>
+            {% endif %}
+           </div>
+        {% endfor %}
+       </div>
+     </div>
+  </div>
+{% include 'footer/footer.html' %}
+</body>
+</html>

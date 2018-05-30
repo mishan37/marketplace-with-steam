@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+{% include 'navbar/navbar.html' %}
+<div class="container">
+ <div class="row" style="height: 200px; margin-top: -20px; background-image:url(https://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_bg.png) ; color: white">
+     <div class="row" style="background-image: url(https://steamcommunity-a.akamaihd.net/public/images/profile/profile_header_bg_texture.jpg); height: 200px;">
+     <div class="col-lg-2 col-md-2" >
+         <img width="128" height="128" style="margin-top: 20px;" src="{{ Profile_User.profile.image_link }}">
+     </div>
+     <div class="col-lg-7 col-md-7">
+         <h3>{{ Profile_User.username }}</h3>
+         <p>{{ Profile_User.first_name}} {{Profile_User.last_name}} {{ Profile_User.profile.country }}</p>
+         <h4>Информация о пользователе</h4>
+         <p>{{ Profile_User.profile.information }}</p>
+     </div>
+     <div class="col-lg-3 col-md-3">
+         <div style="float: left">
+             <h3 style="display: inline-block">Уровень</h3>
+             <span class="friendPlayerLevel">{{ Profile_User.profile.level }}</span>
+         </div>
+        {% if request.user.is_authenticated  %}
+         {% if Auth_User.id == Profile_User.id%}
+          <a href="http://127.0.0.1:8000/profile/{{ Auth_User.id }}/edit" type="button" class="btn btn-primary" style="margin-top: 50px;">Редактировать профиль</a>
+         {% endif %}
+        {% endif %}
+     </div>
+   </div>
+  </div>
+  <div class="row" style="background-color: lightsteelblue; height: 300px;">
+      <div class="col-lg-9 col-md-9">
+       <div class="profile_leftcol_header">
+          <div class="row">
+           <div class="col-lg-3 col-md-3">
+             <h3 data="{{ Profile_User.id }}" id="ProfileActivity">Активность  </h3>
+           </div>
+           <div class="col-lg-5 col-md-5 col-lg-offset-4 col-md-offset-4">
+             <h3 data="{{ Profile_User.id }}" id="ProfileActivity">совершено {{ Selling.count }} продаж(а)(и)</h3>
+           </div>
+          </div>
+       </div>
+      </div>
+      <div class="col-lg-3 col-md-3">
+          <h3>Статус</h3>
+          <a href="http://127.0.0.1:8000/inventory/{{ Profile_User.id }}"><h3>Инвентарь</h3></a>
+          <h3>Чат</h3>
+          <h3>Друзья</h3>
+      </div>
+  </div>
+</div>
+{% include 'footer/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <div class="container-fluid"  style="margin-top: -20px; ">
+  <div class="row" style="background: forestgreen; height: 150px">
+   <div class="container">
+       <div class="row">
+         <div class="col-xs-12 col-md-8 col-lg-6">
+           <h1 style="color: white;">Торговая площадка</h1>
+         </div>
+       </div>
+       <div class="row" style="background: forestgreen; ">
+        <div class="col-lg-10 col-md-8 " style="color: white;">
+         <h4>Продавайте предметы участникам сообщества и приобретайте их</h4>
+       </div>
+       {% if request.user.is_authenticated %}
+       <div class="col-lg-2 col-md-4" style="background-color: grey; color: white">
+         <h4>Баланс кошелька: {{ Auth_User.profile.money }} у.е.</h4>
+       </div>
+       {% endif %}
+    </div>
+   </div>
+
+  </div>
+</div>
+</html>

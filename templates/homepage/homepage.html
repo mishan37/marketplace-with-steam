@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>MarketPlace</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{% static 'js/reg_modal_script.js' %}"></script>
+    <script src="{% static 'js/auth_modal_script.js' %}"></script>
+</head>
+<body>
+
+{% include 'navbar/navbar.html' %}
+{% include 'menu/menu.html' %}
+{% include 'registration/registration_modal.html' %}
+{% include 'authorization/auth_modal.html' %}
+
+
+   <div class="row">
+     <div class="container">
+      <nav class="navbar navbar-inverse" style="margin-top: 20px">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+         <li><a href="/">Активные лоты</a></li>
+         {% if request.user.is_authenticated %}
+          <li><a href="../transaction">История сделок</a></li>
+         {% endif %}
+        </ul>
+      </div>
+     </nav>
+
+     <div class="row" style="color: white">
+      <div class="col-lg-8">
+       <div class="market_listing_table_header">
+        <div class="row">
+         <div class="col-lg-8 col-md-8" >
+            <div class="market_listing_header_namespacer">
+             <h5>НАЗВАНИЕ</h5>
+            </div>
+         </div>
+         <div class="col-lg-2 col-md-2" >
+            <div class="market_listing_right_cell market_listing_num_listings">
+             <h5>КОЛ-ВО</h5>
+            </div>
+         </div>
+         <div class="col-lg-2 col-md-2" >
+            <div class="market_listing_right_cell market_listing_num_listings">
+             <h5>ЦЕНА</h5>
+            </div>
+         </div>
+        </div>
+       </div>
+
+       <div class = "row">
+         {% for Lot in All_Lots %}
+            {% if Lot.item_count != 0 %}
+                {% for item in Items %}
+                    {% if Lot.item_code == item.id %}
+               <a class="market_listing_row_link" href="http://127.0.0.1:8000/lot/{{ Lot.id }}">
+                 <div class="outline_view">
+                    <div class="market_listing_row">
+                      {% if Lot.user_seller_id_id == request.user.id %}
+                        <div class="col-lg-8 col-md-8" >
+                         <div class="market_listing_item_name_block">
+                          <h5>{{ Lot.lot_name }}</h5>
+                         </div>
+                        </div>
+                      {% else %}
+                        <div class="col-lg-8 col-md-8" >
+                         <div class="market_listing_item_name_block">
+                          <h5>{{ Lot.lot_name }}</h5>
+                         </div>
+                        </div>
+                     {% endif %}
+                   <div class="market_listing_price_listings_block ">
+                    <div class="market_listing_right_cell market_listing_num_listings">
+                     <div class="col-lg-2 col-md-2" >
+                      <h5>{{ Lot.item_count }}</h5>
+                     </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2" >
+                     <h5>{{ Lot.cost }} у.е.</h5>
+                    </div>
+                   </div>
+
+                 </div>
+                 </div>
+                </a>
+               {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+
+      </div>
+
+      </div>
+
+      <div class="col-lg-4 col-md-4" style=" margin-top: 5px">
+        <div class="market_search_sidebar_contents">
+          <h5>Поиск предмета</h5>
+          <form id="search_item_form" action="../search_item" method="post">{% csrf_token %}
+          <div class="input-group">
+           <input type="text" name="input_search_item" id="input_search_item" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+             <input class="btn btn-default" type="submit" value="Go">
+            </span>
+          </div>
+          </form>
+          <h5>Фильтр по типу предмета</h5>
+           <a type="button" href="../weapon" class="btn btn-default btn-block">Оружие</a>
+           <a type="button" href="../armor" class="btn btn-default btn-block">Броня</a>
+           <a type="button" href="../food" class="btn btn-default  btn-block">Еда</a>
+           <a type="button" href="/" class="btn btn-default btn-block">Показать все лоты</a>
+          <p></p>
+       </div>
+      </div>
+     </div>
+     </div>
+   </div>
+
+{% include 'footer/footer.html' %}
+
+</body>
+</html>

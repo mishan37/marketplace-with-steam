@@ -118,3 +118,12 @@ def validate_authorization(request):
            data = {'is_user': False, }
 
     return JsonResponse(data)
+
+ 'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'marketplace',
+        'USER': 'postgres',
+        'PASSWORD': 'www',
+        'HOST': '127.0.0.1',
+        'PORT': '5433',
+    }

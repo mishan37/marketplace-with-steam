@@ -26,7 +26,7 @@ admin.autodiscover()
 urlpatterns = [
     path('', views.view_homepage, name='home'),
     path('admin/', admin.site.urls),
-    path('registration/', views.view_regisration, name='registration'),
+    path('registratin/', views.view_regisration, name='registration'),
     path('authorization/', views.view_authorization, name='authorization'),
     path('profile/<int:user_id>/', views.view_user_profile, name='profile'),
     path('inventory/<int:user_id>', views.view_user_inventory, name='inventory'),

@@ -86,7 +86,7 @@
         <h4 name="item_quantity"  id="item_quantity" data-h="{{ User_Item.quantity }}" style="margin-left: 10px">КОЛ-ВО В ИНВЕНТАРЕ: {{User_Item.quantity}}</h4>
         <h4 name="item_price" id="item_price" data-h="МИНИМАЛЬНАЯ ЦЕНА ТОВАРА: " style="margin-left: 10px">МИНИМАЛЬНАЯ ЦЕНА ТОВАРА: {{ Item.starting_price }}</h4>
         {% if Owner_User.id == Auth_User.id %}
-         <form id="new_lot" action="http://127.0.0.1:8000/inventory/createnewlot" method="post">{% csrf_token %}
+         <form id="new_lot" action="https://gamemarketplace.herokuapp.com/inventory/createnewlot" method="post">{% csrf_token %}
           <h4 style="margin-left: 10px" >НАЗВАНИЕ ЛОТА: </h4>
           <input style="margin-left: 10px; color: black;" type="text" id="lot_name_input" name="lot_name_input">
           <div class="form-inline">

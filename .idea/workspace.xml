@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b7482a8-ca90-49e7-8a08-c1818286eb62" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/marketplace/lot.py" afterPath="$PROJECT_DIR$/marketplace/lot.py" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage/homepage.html" afterPath="$PROJECT_DIR$/templates/homepage/homepage.html" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar/navbar.html" afterPath="$PROJECT_DIR$/templates/navbar/navbar.html" />
-      <change beforePath="$PROJECT_DIR$/templates/user/edit_profile.html" afterPath="$PROJECT_DIR$/templates/user/edit_profile.html" />
-      <change beforePath="$PROJECT_DIR$/templates/user/inventory.html" afterPath="$PROJECT_DIR$/templates/user/inventory.html" />
-      <change beforePath="$PROJECT_DIR$/templates/user/profile.html" afterPath="$PROJECT_DIR$/templates/user/profile.html" />
-      <change beforePath="$PROJECT_DIR$/templates/user/transaction.html" afterPath="$PROJECT_DIR$/templates/user/transaction.html" />
+      <change beforePath="$PROJECT_DIR$/marketplace/views.py" afterPath="$PROJECT_DIR$/marketplace/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -104,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/marketplace/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1221">
-              <caret line="72" column="62" lean-forward="false" selection-start-line="71" selection-start-column="5" selection-end-line="72" selection-end-column="62" />
+            <state relative-caret-position="297">
+              <caret line="90" column="19" lean-forward="true" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -116,21 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/marketplace/user.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-587">
-              <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lot.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/marketplace/lot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="94" column="60" lean-forward="false" selection-start-line="94" selection-start-column="60" selection-end-line="94" selection-end-column="60" />
+            <state relative-caret-position="219">
+              <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -181,7 +165,6 @@
         <option value="$PROJECT_DIR$/templates/lot/lot.html" />
         <option value="$PROJECT_DIR$/static/js/lot_script.js" />
         <option value="$PROJECT_DIR$/static/style.css" />
-        <option value="$PROJECT_DIR$/marketplace/views.py" />
         <option value="$PROJECT_DIR$/marketplace/ajax/ajax_validate.py" />
         <option value="$PROJECT_DIR$/static/js/auth_modal_script.js" />
         <option value="$PROJECT_DIR$/static/js/inventory_script.js" />
@@ -204,6 +187,7 @@
         <option value="$PROJECT_DIR$/templates/user/profile.html" />
         <option value="$PROJECT_DIR$/templates/user/transaction.html" />
         <option value="$PROJECT_DIR$/marketplace/lot.py" />
+        <option value="$PROJECT_DIR$/marketplace/views.py" />
       </list>
     </option>
   </component>
@@ -219,7 +203,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="628" />
     <option name="y" value="91" />
     <option name="width" value="697" />
@@ -372,7 +356,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.49755502" order="6" side_tool="false" content_ui="tabs" />
@@ -718,19 +702,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/marketplace/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1221">
-          <caret line="72" column="62" lean-forward="false" selection-start-line="71" selection-start-column="5" selection-end-line="72" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/marketplace/user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-587">
+        <state relative-caret-position="-482">
           <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding />
         </state>
@@ -738,9 +712,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/marketplace/lot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="94" column="60" lean-forward="false" selection-start-line="94" selection-start-column="60" selection-end-line="94" selection-end-column="60" />
+        <state relative-caret-position="219">
+          <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="52" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/marketplace/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="90" column="19" lean-forward="true" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

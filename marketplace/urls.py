@@ -20,6 +20,7 @@ from marketplace import user
 from marketplace import lot
 from marketplace.ajax import ajax_validate
 from marketplace.ajax import ajax_profile
+from django.conf.urls import include, url
 
 admin.autodiscover()
 
@@ -48,6 +49,7 @@ urlpatterns = [
     path('ajax/edit_validate_username/', ajax_validate.edit_validate_username, name='edit_validate_username'),
     path('profile/<int:user_id>/change_user', user.change_user, name='change_user'),
     path('ajax/profile_activity/', ajax_profile.profile_activity, name='profile_activity'),
+    path('openid/', include('django_openid_auth.urls')),
     #path('ajax/validate_authorization/', ajax_validate.validate_authorization, name='validate_authorization'),
 
 ]

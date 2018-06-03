@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'marketplace',
+    'django_openid_auth',
+    'django_steam_api',
+    'django_steam',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +130,12 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
+LOGIN_URL = 'https://steamcommunity.com/openid/login'
+OPENID_CREATE_USERS = True
+STEAM_API_KEY = '28D7515ADA71AFD30826DDF649349BFE'
+
+OPENID_SSO_SERVER_URL = 'http://steamcommunity.com/openid'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -134,4 +143,5 @@ STATICFILES_DIRS = [
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+    'django_openid_auth.auth.OpenIDBackend',
 )

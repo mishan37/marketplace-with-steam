@@ -70,10 +70,10 @@ def view_user_inventory(request, user_id):
      Owner_User = User.objects.get(id=user_id)
      User_Items = models.User_Inventory_Item.objects.filter(user_id_id=user_id)
      User_Item = User_Items.first()
-     if User_Item != None:
-         Item = models.Item.objects.get(id=User_Item.item_code_id)
+     if User_Item!=None:
+      Item = models.Item.objects.get(id=User_Item.item_code_id)
      else:
-         Item = None
+      Item = None
      Items = models.Item.objects.all()
      Lots = models.Lot.objects.all()
      return render(request, 'user/inventory.html', locals())
@@ -88,10 +88,10 @@ def view_user_inventory_item(request, user_item_id, user_id):
      Items = models.Item.objects.all()
      Lots = models.Lot.objects.all()
      User_Item = models.User_Inventory_Item.objects.get(id=user_item_id)
-     if User_Item != None:
-         Item = models.Item.objects.get(id=User_Item.item_code_id)
+     if User_Item!=None:
+      Item = models.Item.objects.get(id=User_Item.item_code_id)
      else:
-         Item = None
+      Item = None
      return render(request, 'user/inventory.html', locals())
     else:
      return redirect('/')

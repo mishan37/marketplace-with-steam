@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load staticfiles %}
 
@@ -29,7 +28,7 @@
         <ul class="nav navbar-nav">
          <li><a href="/">Активные лоты</a></li>
          {% if request.user.is_authenticated %}
-          <li><a href="../transaction">История сделок</a></li>
+          <li><a href="https://gamemarketplace.herokuapp.com/transaction">История сделок</a></li>
          {% endif %}
         </ul>
       </div>
@@ -62,7 +61,7 @@
             {% if Lot.item_count != 0 %}
                 {% for item in Items %}
                     {% if Lot.item_code == item.id %}
-               <a class="market_listing_row_link" href="http://127.0.0.1:8000/lot/{{ Lot.id }}">
+               <a class="market_listing_row_link" href="https://gamemarketplace.herokuapp.com/lot/{{ Lot.id }}">
                  <div class="outline_view">
                     <div class="market_listing_row">
                       {% if Lot.user_seller_id_id == request.user.id %}
@@ -105,7 +104,7 @@
       <div class="col-lg-4 col-md-4" style=" margin-top: 5px">
         <div class="market_search_sidebar_contents">
           <h5>Поиск предмета</h5>
-          <form id="search_item_form" action="../search_item" method="post">{% csrf_token %}
+          <form id="search_item_form" action="https://gamemarketplace.herokuapp.com/search_item" method="post">{% csrf_token %}
           <div class="input-group">
            <input type="text" name="input_search_item" id="input_search_item" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
@@ -114,9 +113,9 @@
           </div>
           </form>
           <h5>Фильтр по типу предмета</h5>
-           <a type="button" href="../weapon" class="btn btn-default btn-block">Оружие</a>
-           <a type="button" href="../armor" class="btn btn-default btn-block">Броня</a>
-           <a type="button" href="../food" class="btn btn-default  btn-block">Еда</a>
+           <a type="button" href="https://gamemarketplace.herokuapp.com/weapon" class="btn btn-default btn-block">Оружие</a>
+           <a type="button" href="https://gamemarketplace.herokuapp.com/armor" class="btn btn-default btn-block">Броня</a>
+           <a type="button" href="https://gamemarketplace.herokuapp.com/food" class="btn btn-default  btn-block">Еда</a>
            <a type="button" href="/" class="btn btn-default btn-block">Показать все лоты</a>
           <p></p>
        </div>

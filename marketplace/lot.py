@@ -92,7 +92,6 @@ def create(request):
       User_Inventory_Item.quantity = User_Inventory_Item.quantity - int(Lot_Quantity)
       User_Inventory_Item.save()
 
-      return redirect('http://127.0.0.1:8000/inventory/' + Lot_Seller_Id)
+      return redirect('https://gamemarketplace.herokuapp.com/inventory/' + Lot_Seller_Id)
     else:
       return redirect('/')
-
